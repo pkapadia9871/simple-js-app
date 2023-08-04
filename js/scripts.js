@@ -11,7 +11,43 @@ let pokemonRepository = (function () {
     }
     function showDetails(pokemon) {
       loadDetails(pokemon).then(function () {
-        console.log(pokemon);
+        /*console.log(pokemon);*/
+        /*YOUR CODE HERE*/
+        document.querySelector('#show-modal').addEventListener('click', () => {
+        let modalContainer = document.querySelector('#modal-container');
+        // Clear all existing modal content
+        modalContainer.innerHTML = '';
+        let modal = document.createElement('div');
+        modal.classList.add('modal');
+        // Add the new modal content
+        let closeButtonElement = document.createElement('button');
+        closeButtonElement.classList.add('modal-close');
+        closeButtonElement.innerText = 'Close';
+        closeButtonElement.addEventListener('click', function () {
+          let modalContainer = document.querySelector('#modal-container');
+          modalContainer.classList.remove('is-visible');
+        })
+        let titleElement = document.createElement('h1');
+        titleElement.innerText = 'name: ' + pokemon.name;
+        let contentElement = document.createElement('p');
+        contentElement.innerText = 'height: ' + pokemon.height;
+        /*render image to modal */
+        /*let container = document.querySelector('#image-container');*/
+        // Create an <img> element
+        let myImage = document.createElement('img');
+
+        // setting `src` property to set the actual element's `src` attribute
+        // this also works on <img> elements selected by querySelector() method, it is not specific for <img> elements created with createElement() methods
+        myImage.src = pokemon.imageUrl;
+
+        /*close modal*/
+        modal.appendChild(closeButtonElement);
+        modal.appendChild(titleElement);
+        modal.appendChild(contentElement);
+        modal.appendChild(myImage);
+        modalContainer.appendChild(modal);
+        modalContainer.classList.add('is-visible');})
+        /*END OF CODE*/
       });
     }
     function addListItem(pokemon) {
@@ -65,9 +101,7 @@ let pokemonRepository = (function () {
     };
   })();
 
-/* pokemonRepository.add({ name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison']});
-pokemonRepository.add({ name: 'Ivysaur', height: 1, types: ['grass', 'poison']});
-pokemonRepository.add({ name: 'Venusaur', height: 0.4, types: ['grass', 'poison']}); */
+
 console.log(pokemonRepository.getAll())
 
 pokemonRepository.loadList().then(function() {
