@@ -4,11 +4,20 @@ let pokemonList = [
     { name: 'Venusaur', height: 0.4, types: ['grass', 'poison']},
   ];
 
-  for (let i = 0; i <= pokemonList.length; i++) {
-    document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
-    if (pokemonList[i].height >= 1.0)
-    {
-      document.write(' - Wow, thats big!')  
-    }
-    document.write('<br>');
+/* for (let i = 0; i <= pokemonList.length; i++) {
+  document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
+  if (pokemonList[i].height >= 1.0)
+  {
+    document.write(' - Wow, thats big!')  
   }
+  document.write('<br>');
+} */
+
+pokemonList.forEach(function(name_item) {
+  document.write(name_item.name + ' (height: ' + name_item.height + ')');
+  if (name_item.height >= 1.0)
+  {
+    document.write(' - Wow, thats big!')  
+  }
+  document.write('<br>');
+});
