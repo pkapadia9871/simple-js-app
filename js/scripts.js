@@ -1,11 +1,3 @@
-
-/* let pokemonList = [
-  { name: 'Bulbasaur', height: 0.7, types: ['grass', 'poison']},
-  { name: 'Ivysaur', height: 1, types: ['grass', 'poison']},
-  { name: 'Venusaur', height: 0.4, types: ['grass', 'poison']},
-];
- */
-
 let pokemonRepository = (function () {
   let pokemonList = []; // empty array
 
@@ -15,6 +7,22 @@ let pokemonRepository = (function () {
     },
     getAll: function() {
       return pokemonList;
+    },
+    showDetails: function(pokemon) {
+      console.log(pokemon);
+    },
+    addListItem: function(pokemon) {
+      let element = document.querySelector('ul')
+      let listItem = document.createElement('li')
+      let button = document.createElement('button')
+      button.innerText = pokemon.name
+      button.classList.add('my-class')
+      listItem.appendChild(button)
+      element.appendChild(listItem)
+      button.addEventListener('click', function (event) {
+        pokemonRepository.showDetails(pokemon);
+        console.log(event);
+      });
     }
   };
 })();
@@ -24,20 +32,7 @@ pokemonRepository.add({ name: 'Ivysaur', height: 1, types: ['grass', 'poison']})
 pokemonRepository.add({ name: 'Venusaur', height: 0.4, types: ['grass', 'poison']});
 console.log(pokemonRepository.getAll())
 
-/* for (let i = 0; i <= pokemonList.length; i++) {
-  document.write(pokemonList[i].name + ' (height: ' + pokemonList[i].height + ')');
-  if (pokemonList[i].height >= 1.0)
-  {
-    document.write(' - Wow, thats big!')  
-  }
-  document.write('<br>');
-} */
-
-pokemonRepository.getAll().forEach(function(name_item) {
-  document.write(name_item.name + ' (height: ' + name_item.height + ')');
-  if (name_item.height >= 1.0)
-  {
-    document.write(' - Wow, thats big!')  
-  }
-  document.write('<br>');
+pokemonRepository.getAll().forEach(function(pokemon) {
+  pokemonRepository.addListItem(pokemon)
 }); 
+
