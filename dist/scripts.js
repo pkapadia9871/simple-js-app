@@ -47,16 +47,13 @@ let pokemonRepository = (function () {
       button.innerText = pokemon.name
       button.classList.add('btn')
       /*data-toggle, data-target*/
-      $('[data-toggle="modal"]').on('click', function(){
-        let targetSelector = $(this).attr('data-target');
-        $(targetSelector).modal('show'); // Bootstrap’s own function to make the modal appear
-      });
+      button.setAttribute('data-toggle', 'modal');
+      button.setAttribute('data-target','#exampleModal');
       /*end of code*/
       listItem.appendChild(button)
       element.appendChild(listItem)
       button.addEventListener('click', function (event) {
         pokemonRepository.showDetails(pokemon);
-        console.log(event);
       });
     }
 
